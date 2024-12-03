@@ -1,11 +1,29 @@
-import React from "react";
-import placaBronce from '../assets/placa-bronce.svg'
+import React, { useRef } from "react";
+import placaBronce from '../assets/placa-bronce.svg';
+import { toJpeg } from "html-to-image";
 
 const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
+  const divRef = useRef(null); // Crear referencia al div que será convertido a imagen
+
+  const handleDownload = () => {
+    if (divRef.current) {
+      toJpeg(divRef.current, { quality: 0.95 }) // Convertir a imagen en formato JPEG
+        .then((dataUrl) => {
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = "placa.jpg";
+          link.click();
+        })
+        .catch((err) => {
+          console.error("Error al generar la imagen:", err);
+        });
+    }
+  };
 
   return (
     <div>
-      <div className="flex items-center flex-col border p-10 border-neutral-200 rounded-md">
+      {/* A convertir en imagen */}
+      <div ref={divRef} className="flex items-center flex-col border p-10 border-neutral-200 rounded-md">
         <div
           className="relative flex items-center flex-col justify-center w-96 h-96 rounded-full shadow-lg"
           style={{
@@ -14,7 +32,6 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
             backgroundRepeat: 'no-repeat',
           }}
         >
-
           <svg className="absolute w-full h-full" viewBox="0 0 200 200">
             {/* Texto superior */}
             <path
@@ -27,15 +44,9 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
                 {nombre || "RAZÓN SOCIAL COMPLETA"}
               </textPath>
             </text>
-
-            {/* 
-            d="M 28,100 A 72,72 0 1,1 172,100"
-            
-            */}
             <path
               id="textoInferior"
               d="M 33,100 A 67,67 0 1,1 167,100"
-              
               fill="transparent"
             />
             <text className="font-normal text-black text-[10px] uppercase">
@@ -50,10 +61,7 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
             {orden || "C"}
           </div>
 
-          {/* Triángulo (pendiente agregar) */}
-          <div className="mt-20 text-center ">
-            
-          </div>
+          <div className="mt-20 text-center "> </div>
 
           {/* Código */}
           <div className="text-center text-[24px] font-semibold text-black">
@@ -67,7 +75,6 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
           </div>
 
           <svg className="absolute w-full h-full" viewBox="0 0 200 200">
-            {/* Texto Bajo */}
             <path
               id="textoB"
               d="M 20,110 A 80,80 0 0,0 180,110"
@@ -81,17 +88,26 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
           </svg> 
         </div>
       </div>
+      {/* Hasta aquí se convierte en imagen jpg */}
+
+      {/* Botones */}
       <div className="flex items-center m-auto">
-        <button className="bg-blue-500 text-white p-2 rounded-md mt-2 mr-4 hover:bg-blue-600 transition">
+        <button
+          onClick={handleDownload}
+          className="bg-blue-500 text-white p-2 rounded-md mt-2 mr-4 hover:bg-blue-600 transition"
+        >
           Descargar en imagen
         </button>
+        {/*
         <button className="bg-green-600 text-white p-2 rounded-md mt-2 mr-4 hover:bg-green-800 transition">
           Enviar a WhatsApp
         </button>
+        */}
       </div>
     </div>
   );
 };
 
 export default Placa;
+
 
