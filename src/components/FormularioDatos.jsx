@@ -130,14 +130,8 @@ const FormularioDatos = () => {
             <option value="PROPIEDAD PRIVADA">PROPIEDAD PRIVADA</option>
           </select>
         </div>
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
-        >
-          Enviar
-        </button>
       </form>
+      
       {/* Renderizamos el componente Placa con los datos ingresados */}
       <div className="flex m-auto">
         <Placa 
