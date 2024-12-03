@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Placa from "./Placa";
 
 const FormularioDatos = () => {
@@ -8,6 +8,7 @@ const FormularioDatos = () => {
     codigo: "",
     mes: "",
     anio: "",
+    propiedad: "",
   });
 
   const handleChange = (e) => {
@@ -33,7 +34,8 @@ const FormularioDatos = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 p-6 max-w-md mx-auto bg-white shadow-md rounded-lg"
+        className="flex flex-col gap-2 p-6 max-w-md bg-white shadow-md w-[50%] rounded-lg
+        mx-10"
       >
         <h2 className="text-xl font-semibold text-gray-700 text-center">
           Formulario de Datos
@@ -79,15 +81,27 @@ const FormularioDatos = () => {
         </div>
         <div className="flex flex-col">
           <label className="text-gray-600 mb-1">Mes:</label>
-          <input
-            type="text"
+          <select
             name="mes"
             value={formData.mes}
             onChange={handleChange}
-            placeholder="3 caracteres"
             className="border rounded-md p-2 focus:ring-2 focus:ring-blue-400 outline-none"
             required
-          />
+          >
+            <option value="">Seleccione</option>
+            <option value="ENE">ENE</option>
+            <option value="FEB">FEB</option>
+            <option value="MAR">MAR</option>
+            <option value="ABR">ABR</option>
+            <option value="MAY">MAY</option>
+            <option value="JUN">JUN</option>
+            <option value="JUL">JUL</option>
+            <option value="AGO">AGO</option>
+            <option value="SEP">SEP</option>
+            <option value="OCT">OCT</option>
+            <option value="NOV">NOV</option>
+            <option value="DIC">DIC</option>
+          </select>
         </div>
         <div className="flex flex-col">
           <label className="text-gray-600 mb-1">Año:</label>
@@ -101,6 +115,22 @@ const FormularioDatos = () => {
             required
           />
         </div>
+
+        <div className="flex flex-col">
+          <label className="text-gray-600 mb-1">Propiedad:</label>
+          <select
+            name="propiedad"
+            value={formData.propiedad}
+            onChange={handleChange}
+            className="border rounded-md p-2 focus:ring-2 focus:ring-blue-400 outline-none"
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="PROPIEDAD DEL ESTADO">PROPIEDAD DEL ESTADO</option>
+            <option value="PROPIEDAD PRIVADA">PROPIEDAD PRIVADA</option>
+          </select>
+        </div>
+
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
@@ -109,14 +139,15 @@ const FormularioDatos = () => {
         </button>
       </form>
       {/* Renderizamos el componente Placa con los datos ingresados */}
-      <div className="mt-8 flex justify-center">
-      <Placa 
-        nombre={formData.nombre} 
-        orden={formData.orden} 
-        codigo={formData.codigo} 
-        mes={formData.mes} 
-        anio={formData.anio} 
-        />
+      <div className="flex m-auto">
+        <Placa 
+          nombre={formData.nombre} 
+          orden={formData.orden} 
+          codigo={formData.codigo} 
+          mes={formData.mes} 
+          anio={formData.anio}
+          propiedad={formData.propiedad}
+          />
       </div>
     </>
   );

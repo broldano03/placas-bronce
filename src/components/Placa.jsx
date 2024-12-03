@@ -1,38 +1,71 @@
 import React from "react";
+import placaBronce from '../assets/placa-bronce.svg'
 
-const Placa = ({ nombre, orden, codigo, mes, anio }) => {
+const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
+
   return (
-    <div className="flex items-center justify-center">
-      <div className="relative flex items-center justify-center w-64 h-64 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full shadow-lg">
-        {/* Nombre dinámico */}
-        <div className="absolute top-4 text-center w-full text-sm font-bold text-black uppercase">
-          {nombre || "Municipalidad Provincial de Trujillo"}
-        </div>
-        {/* Texto fijo */}
-        <div className="absolute top-10 text-center text-xs font-medium text-black">
-          SE PROHIBE DESTRUIR
-        </div>
+    <div className="flex items-center flex-col ">
+       <div
+        className="relative flex items-center flex-col justify-center w-96 h-96 rounded-full shadow-lg"
+        style={{
+          backgroundImage: `url(${placaBronce})`,
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+
+      <svg className="absolute w-full h-full" viewBox="0 0 200 200">
+        {/* Texto superior */}
+        <path
+          id="textoSuperior"
+          d="M 20,100 A 80,80 0 1,1 180,100"
+          fill="transparent"
+        />
+        <text className="font-bold text-black text-[10px] uppercase">
+          <textPath href="#textoSuperior" startOffset="50%" textAnchor="middle">
+            {nombre || "RAZÓN SOCIAL COMPLETA"}
+          </textPath>
+        </text>
+        
+        {/* Texto inferior (ajustado) */}
+        <path
+          id="textoInferior"
+          d="M 20,115 A 70,70 0 1,1 180,110"
+          fill="transparent"
+        />
+        <text className="font-bold text-black text-[10px] uppercase">
+          <textPath href="#textoInferior" startOffset="50%" textAnchor="middle">
+            SE PROHIBE DESTRUIR
+          </textPath>
+        </text>
+      </svg>
+
         {/* Orden (letra grande) */}
-        <div className="absolute text-center text-6xl font-bold text-black">
+        <div className=" text-center text-6xl font-bold text-black pt-12">
           {orden || "C"}
         </div>
+
         {/* Triángulo (pendiente agregar) */}
-        <div className="absolute mt-20 text-center text-xs text-black">
-          ▲ {/* Placeholder para el triángulo */}
+        <div className="mt-20 text-center ">
+          
         </div>
+
         {/* Código */}
-        <div className="absolute bottom-16 text-center text-xl font-semibold text-black">
-          {codigo || "1023538"}
+        <div className="text-center text-xl font-semibold text-black">
+          {codigo || "1000000"}
         </div>
+
         {/* Mes y Año */}
-        <div className="absolute bottom-12 text-center text-md text-black">
-          {mes || "NOV"} <br />
+        <div className="text-center text-xl text-black">
+          {mes || "MES"} <br />
           {anio || "2024"}
         </div>
+
         {/* Propiedad del estado */}
-        <div className="absolute bottom-4 text-center text-xs text-black">
-          PROPIEDAD DEL ESTADO
+        <div className=" text-center text-xl text-black">
+          {propiedad || "PROPIEDAD DEL ESTADO"}
         </div>
+
       </div>
     </div>
   );

@@ -4,12 +4,14 @@ import FormularioDatos from './components/FormularioDatos'
 function App() {
 
   return (
-    <>
-    <h1 className="text-3xl font-bold underline text-red-700">
-      Hello world!
-    </h1>
-    <FormularioDatos />
-    </>
+    <div className='w-full'>
+      <h1 className="text-3xl font-bold text-center py-5 mb-3">
+        Generador de Placas de Bronce
+      </h1>
+      <div className='flex mx-20'>
+         <FormularioDatos />
+      </div>
+    </div>
   )
 }
 
