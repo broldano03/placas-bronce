@@ -14,31 +14,35 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
         }}
       >
 
-      <svg className="absolute w-full h-full" viewBox="0 0 200 200">
-        {/* Texto superior */}
-        <path
-          id="textoSuperior"
-          d="M 20,100 A 80,80 0 1,1 180,100"
-          fill="transparent"
-        />
-        <text className="font-bold text-black text-[10px] uppercase">
-          <textPath href="#textoSuperior" startOffset="50%" textAnchor="middle">
-            {nombre || "RAZÓN SOCIAL COMPLETA"}
-          </textPath>
-        </text>
-        
-        {/* Texto inferior (ajustado) */}
-        <path
-          id="textoInferior"
-          d="M 20,115 A 70,70 0 1,1 180,110"
-          fill="transparent"
-        />
-        <text className="font-bold text-black text-[10px] uppercase">
-          <textPath href="#textoInferior" startOffset="50%" textAnchor="middle">
-            SE PROHIBE DESTRUIR
-          </textPath>
-        </text>
-      </svg>
+        <svg className="absolute w-full h-full" viewBox="0 0 200 200">
+          {/* Texto superior */}
+          <path
+            id="textoSuperior"
+            d="M 20,100 A 80,80 0 1,1 180,100"
+            fill="transparent"
+          />
+          <text className="font-bold text-black text-[10px] uppercase">
+            <textPath href="#textoSuperior" startOffset="50%" textAnchor="middle">
+              {nombre || "RAZÓN SOCIAL COMPLETA"}
+            </textPath>
+          </text>
+
+          {/* 
+          d="M 28,100 A 72,72 0 1,1 172,100"
+          
+          */}
+          <path
+            id="textoInferior"
+            d="M 33,100 A 67,67 0 1,1 167,100"
+            
+            fill="transparent"
+          />
+          <text className="font-semibold text-black text-[9px] uppercase">
+            <textPath href="#textoInferior" startOffset="50%" textAnchor="middle">
+              SE PROHIBE DESTRUIR
+            </textPath>
+          </text>
+        </svg>
 
         {/* Orden (letra grande) */}
         <div className=" text-center text-6xl font-bold text-black pt-12">
@@ -61,11 +65,24 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
           {anio || "2024"}
         </div>
 
-        {/* Propiedad del estado */}
-        <div className=" text-center text-xl text-black">
-          {propiedad || "PROPIEDAD DEL ESTADO"}
-        </div>
-
+        <svg className="absolute w-full h-full" viewBox="0 0 200 200">
+          {/* Texto superior */}
+          <path
+            id="textoB"
+            d="M 20,110 A 80,80 0 0,0 180,110"
+            fill="transparent"
+          />
+          <text className="font-bold text-black text-[10px] uppercase">
+            <textPath href="#textoB" startOffset="50%" textAnchor="middle">
+              {propiedad || "PROPIEDAD DEL ESTADO"}
+            </textPath>
+          </text>
+        </svg> 
+          {/* 
+          d="M 28,100 A 72,72 0 1,1 172,100"
+          d="M 20,100 A 80,80 0 1,1 180,100"
+          */}
+          
       </div>
     </div>
   );
