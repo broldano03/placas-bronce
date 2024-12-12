@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import placaBronce from '../assets/placa-bronce.svg';
+import placaBronce from '../assets/placa-bronce-cerin.svg';
 import { toJpeg } from "html-to-image";
 
 const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
@@ -23,7 +23,7 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
   return (
     <div>
       {/* A convertir en imagen */}
-      <div ref={divRef} className="flex items-center flex-col border p-10 border-neutral-200 rounded-md">
+      <div ref={divRef} className="flex items-center flex-col border p-10 border-neutral-200 rounded-md bg-white">
         <div
           className="relative flex items-center flex-col justify-center w-96 h-96 rounded-full shadow-lg"
           style={{
@@ -86,6 +86,9 @@ const Placa = ({ nombre, orden, codigo, mes, anio, propiedad }) => {
               </textPath>
             </text>
           </svg> 
+        </div>
+        <div>
+          <p className="pt-3 font-medium italic">Desarrollado por Corporación Cerín Ingenieros.</p>
         </div>
       </div>
       {/* Hasta aquí se convierte en imagen jpg */}

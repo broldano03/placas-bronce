@@ -1,7 +1,20 @@
+import { useEffect } from 'react';
 import './App.css'
 import FormularioDatos from './components/FormularioDatos'
 
 function App() {
+
+  useEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.remove('dark');
+  }, []);
+  
 
   return (
     <div className='w-full'>
